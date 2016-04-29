@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>CompareXML by vkononov</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">CompareXML</h1>
+      <h2 class="project-tagline">CompareXML is a fast, lightweight and feature-rich tool that will solve your XML/HTML comparison or diffing needs. its purpose is to compare two instances of Nokogiri::XML::Node or Nokogiri::XML::NodeSet for equality or equivalency.</h2>
+      <a href="https://github.com/vkononov/compare-xml" class="btn">View on GitHub</a>
+      <a href="https://github.com/vkononov/compare-xml/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/vkononov/compare-xml/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="comparexml" class="anchor" href="#comparexml" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CompareXML</h1>
+
+<p><a href="https://rubygems.org/gems/compare-xml"><img src="https://badge.fury.io/rb/compare-xml.svg" alt="Gem Version"></a></p>
+
+<p>CompareXML is a fast, lightweight and feature-rich tool that will solve your XML/HTML comparison or diffing needs. its purpose is to compare two instances of <code>Nokogiri::XML::Node</code> or <code>Nokogiri::XML::NodeSet</code> for equality or equivalency.</p>
+
+<p><strong>Features</strong></p>
+
+<ul>
+<li>Fast, light-weight and highly customizable</li>
+<li>Compares XML/HTML documents and document fragments</li>
+<li>Can produce both detailed diffing discrepancies or execute silently</li>
+<li>Has the ability to exclude specific nodes or attributes from all comparisons</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>compare-xml<span class="pl-pds">'</span></span></pre></div>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install compare-xml
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Using CompareXML is as simple as</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">CompareXML</span>.equivalent?(doc1, doc2)</pre></div>
+
+<p>where <code>doc1</code> and <code>doc2</code> are instances of <code>Nokogiri::XML::Node</code> or <code>Nokogiri::XML::NodeSet</code>.</p>
+
+<p><strong>Example</strong></p>
+
+<p>Suppose you have two files <code>1.html</code> and <code>2.html</code> that you would like to compare. You could do it as follows:</p>
+
+<div class="highlight highlight-source-ruby"><pre>doc1 <span class="pl-k">=</span> <span class="pl-c1">Nokogiri</span>::<span class="pl-c1">HTML</span>(open(<span class="pl-s"><span class="pl-pds">'</span>1.html<span class="pl-pds">'</span></span>))
+doc2 <span class="pl-k">=</span> <span class="pl-c1">Nokogiri</span>::<span class="pl-c1">HTML</span>(open(<span class="pl-s"><span class="pl-pds">'</span>2.html<span class="pl-pds">'</span></span>))
+puts <span class="pl-c1">CompareXML</span>.equivalent?(doc1, doc2)</pre></div>
+
+<p>The above code will print <code>true</code> or <code>false</code> depending on the result of the comparison.</p>
+
+<blockquote>
+<p>If you are using CompareXML in a script, then you need to require it manually with:</p>
+</blockquote>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>compare-xml<span class="pl-pds">'</span></span></pre></div>
+
+<h2>
+<a id="options-at-a-glance" class="anchor" href="#options-at-a-glance" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Options at a Glance</h2>
+
+<p>CompareXML has a variety of options that can be invoked as an optional argument, e.g.:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c1">CompareXML</span>.equivalent?(doc1, doc2, {<span class="pl-c1">ignore_comments:</span> <span class="pl-c1">false</span>, <span class="pl-c1">verbose:</span> <span class="pl-c1">true</span>, ...})</pre></div>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>collapse_whitespace: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#collapse_whitespace">read more...</a>
+
+<ul>
+<li>when <code>true</code>, trims and collapses whitespace</li>
+</ul>
+</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>ignore_attr_order: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_attr_order">read more...</a>
+
+<ul>
+<li>when <code>true</code>, ignores attribute order within tags</li>
+</ul>
+</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>ignore_attr_content: [string1, string2, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attr_content">read more...</a>
+
+<ul>
+<li>when provided, ignores all attributes that contain substrings <code>string</code>, <code>string2</code>, etc.</li>
+</ul>
+</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>ignore_attrs: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attrs">read more...</a>
+
+<ul>
+<li>when provided, ignores specific <em>attributes</em> using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>
+</li>
+</ul>
+</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>ignore_comments: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_comments">read more...</a>
+
+<ul>
+<li>when <code>true</code>, ignores comments, such as <code>&lt;!-- comment --&gt;</code>
+</li>
+</ul>
+</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>ignore_nodes: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>      <a href="#ignore_nodes">read more...</a>
+
+<ul>
+<li>when provided, ignores specific <em>nodes</em> using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>
+</li>
+</ul>
+</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>ignore_text_nodes: {true|false}</code> default: <strong><code>false</code></strong>     <a href="#ignore_text_nodes">read more...</a>
+
+<ul>
+<li>when <code>true</code>, ignores all text content within a document</li>
+</ul>
+</li>
+</ul>
+
+<p><br></p>
+
+<ul>
+<li>
+<code>verbose: {true|false}</code> default: <strong><code>false</code></strong>          <a href="#verbose">read more...</a>
+
+<ul>
+<li>when <code>true</code>, instead of a boolean, <code>CompareXML.equivalent?</code> returns an array of discrepancies.</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="options-in-depth" class="anchor" href="#options-in-depth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Options in Depth</h2>
+
+<ul>
+<li>
+<p><a id="collapse_whitespace"></a><code>collapse_whitespace: {true|false}</code> default: <strong><code>true</code></strong></p>
+
+<p>When <code>true</code>, all text content within the document is trimmed (i.e. space removed from left and right) and whitespace is collapsed (i.e. tabs, new lines, multiple whitespace characters are replaced by a single whitespace).</p>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {collapse_whitespace: true})</code></p>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin"&gt;   SOME TEXT CONTENT   &lt;/a&gt;
+&lt;a href="/index"&gt; SOME    TEXT    CONTENT &lt;/a&gt;
+</code></pre>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;html&gt;
+    &lt;title&gt;
+        This is my title
+    &lt;/title&gt;
+&lt;/html&gt;
+
+&lt;html&gt;&lt;title&gt;This is my title&lt;/title&gt;&lt;/html&gt;
+</code></pre>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>
+<p><a id="ignore_attr_order"></a><code>ignore_attr_order: {true|false}</code> default: <strong><code>true</code></strong></p>
+
+<p>When <code>true</code>, all attributes are sorted before comparison and only attributes of the same type are compared.</p>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {ignore_attr_order: true})</code></p>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin" class="button" target="_blank"&gt;Link&lt;/a&gt;
+&lt;a class="button" target="_blank" href="/admin"&gt;Link&lt;/a&gt;
+</code></pre>
+
+<p><strong>Example:</strong> When <code>false</code> the above HTML strings are compared as follows:</p>
+
+<pre><code>href="admin" != class="button
+</code></pre>
+
+<p>The comparison of the <code>&lt;a&gt;</code> element will stop at this point, since a discrepancy is found.</p>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are compared as follows:</p>
+
+<pre><code>&lt;a href="/admin" class="button" target="_blank"&gt;Link&lt;/a&gt;
+&lt;a class="button" target="_blank" href="/admin" rel="nofollow"&gt;Link&lt;/a&gt;
+
+class="button"  == class="button"
+href="/admin"   == href="/admin"
+                =! rel="nofollow"
+target="_blank" == target="_blank"
+</code></pre>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>
+<p><a id="ignore_attr_content"></a><code>ignore_attr_content: [string1, string2, ...]</code> default: <strong><code>[]</code></strong></p>
+
+<p>When provided, ignores all <strong>attributes</strong> that contain any of the given substrings. <strong>Note:</strong> types of attributes still have to match (i.e. <code>&lt;p&gt;</code> = <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code> = <code>&lt;div&gt;</code>,  etc).</p>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {ignore_attr_content: ['button']})</code></p>
+
+<p><strong>Example:</strong> With <code>ignore_attr_content: ['button']</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin" id="button_1" class="blue button"&gt;Link&lt;/a&gt;
+&lt;a href="/admin" id="button_2" class="info button"&gt;Link&lt;/a&gt;
+</code></pre>
+
+<p><strong>Example:</strong> With <code>ignore_attr_content: ['menu']</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a class="menu left" data-scope="abrth$menu" role="side-menu"&gt;Link&lt;/a&gt;
+&lt;a class="main menu" data-scope="ergeh$menu" role="main-menu"&gt;Link&lt;/a&gt;
+</code></pre>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>
+<p><a id="ignore_attrs"></a><code>ignore_attrs: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong></p>
+
+<p>When provided, ignores all <strong>attributes</strong> that satisfy a particular rule using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>.</p>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {ignore_attrs: ['a[rel="nofollow"]', 'input[type="hidden"']})</code></p>
+
+<p><strong>Example:</strong> With <code>ignore_attrs: ['a[rel="nofollow"]', 'a[target]']</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin" class="button" target="_blank"&gt;Link&lt;/a&gt;
+&lt;a href="/admin" class="button" target="_self" rel="nofollow"&gt;Link&lt;/a&gt;
+</code></pre>
+
+<p><strong>Example:</strong> With <code>ignore_attrs: ['a[href^="http"]', 'a[class*="button"]']</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="http://google.ca" class="primary button"&gt;Link&lt;/a&gt;
+&lt;a href="https://google.com" class="primary button rounded"&gt;Link&lt;/a&gt;
+</code></pre>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>
+<p><a id="ignore_comments"></a><code>ignore_comments: {true|false}</code> default: <strong><code>true</code></strong></p>
+
+<p>When <code>true</code>, ignores comments, such as <code>&lt;!-- This is a comment --&gt;</code>.</p>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {ignore_comments: true})</code></p>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;!-- This is a comment --&gt;
+&lt;!-- This is another comment --&gt;
+</code></pre>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin"&gt;&lt;!-- This is a comment --&gt;Link&lt;/a&gt;
+&lt;a href="/admin"&gt;Link&lt;/a&gt;
+</code></pre>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>
+<p><a id="ignore_nodes"></a><code>ignore_nodes: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong></p>
+
+<p>When provided, ignores all <strong>nodes</strong> that satisfy a particular rule using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>.</p>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {ignore_nodes: ['script', 'object']})</code></p>
+
+<p><strong>Example:</strong> With <code>ignore_nodes: ['a[rel="nofollow"]', 'a[target]']</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin" class="icon" target="_blank"&gt;Link 1&lt;/a&gt;
+&lt;a href="/index" class="button" target="_self" rel="nofollow"&gt;Link 2&lt;/a&gt;
+</code></pre>
+
+<p><strong>Example:</strong> With <code>ignore_nodes: ['b', 'i']</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin"&gt;&lt;i class"icon bulb"&gt;&lt;/i&gt;&lt;b&gt;Warning:&lt;/b&gt; Link&lt;/a&gt;
+&lt;a href="/admin"&gt;&lt;i class"icon info"&gt;&lt;/i&gt;&lt;b&gt;Message:&lt;/b&gt; Link&lt;/a&gt;
+</code></pre>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>
+<p><a id="ignore_text_nodes"></a><code>ignore_text_nodes: {true|false}</code> default: <strong><code>false</code></strong></p>
+
+<p>When <code>true</code>, ignores all text content. Text content is anything that is included between an opening and a closing tag, e.g. <code>&lt;tag&gt;THIS IS TEXT CONTENT&lt;/tag&gt;</code>.</p>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {ignore_text_nodes: true})</code></p>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;a href="/admin"&gt;SOME TEXT CONTENT&lt;/a&gt;
+&lt;a href="/admin"&gt;DIFFERENT TEXT CONTENT&lt;/a&gt;
+</code></pre>
+
+<p><strong>Example:</strong> When <code>true</code> the following HTML strings are considered equal:</p>
+
+<pre><code>&lt;i class="icon&gt;&lt;/i&gt;  &lt;b&gt;Warning:&lt;/b&gt;
+&lt;i class="icon&gt;  &lt;/i&gt;    &lt;b&gt;Message:&lt;/b&gt;
+</code></pre>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>
+<p><a id="verbose"></a><code>verbose: {true|false}</code> default: <strong><code>false</code></strong></p>
+
+<p>When <code>true</code>, instead of returning a boolean value  <code>CompareXML.equivalent?</code> returns an array of all errors encountered when performing a comparison.</p>
+
+<blockquote>
+<p><strong>Warning:</strong> When <code>true</code>, the comparison takes longer! Not only because more processing is required to produce meaningful differences, but also because in this mode, comparison does <strong>NOT</strong> stop when a first difference is encountered, because the goal is to capture as many differences as possible.</p>
+</blockquote>
+
+<p><strong>Usage Example:</strong> <code>CompareXML.equivalent?(doc1, doc2, {verbose: true})</code></p>
+
+<p><strong>Example:</strong> When <code>true</code> given the following HTML strings:</p>
+
+<p><img src="img/diffing.png" alt="diffing"></p>
+
+<p><code>CompareXML.equivalent?(doc1, doc2, {verbose: true})</code> will produce an array shown below.</p>
+
+<div class="highlight highlight-source-ruby"><pre>[
+    {
+        <span class="pl-c1">node1:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;title&gt;TITLE&lt;/title&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">node2:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;title&gt;ANOTHER TITLE&lt;/title&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff1:</span> <span class="pl-s"><span class="pl-pds">'</span>TITLE<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff2:</span> <span class="pl-s"><span class="pl-pds">'</span>ANOTHER TITLE<span class="pl-pds">'</span></span>,
+    },
+    {
+        <span class="pl-c1">node1:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;h1&gt;SOME HEADING&lt;/h1&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">node2:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;h1 id="main"&gt;SOME HEADING&lt;/h1&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff1:</span> <span class="pl-c1">nil</span>,
+        <span class="pl-c1">diff2:</span> <span class="pl-s"><span class="pl-pds">'</span>id="main"<span class="pl-pds">'</span></span>,
+    },
+    {
+        <span class="pl-c1">node1:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;a href="/admin" rel="icon"&gt;Link&lt;/a&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">node2:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;a rel="button" href="/admin"&gt;Link&lt;/a&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff1:</span> <span class="pl-s"><span class="pl-pds">'</span>"rel="icon"<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff2:</span> <span class="pl-s"><span class="pl-pds">'</span>"rel="button"<span class="pl-pds">'</span></span>,
+    },
+    {
+        <span class="pl-c1">node1:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;cite&gt;Author Name&lt;/cite&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">node2:</span> <span class="pl-c1">nil</span>,
+        <span class="pl-c1">diff1:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;cite&gt;Author Name&lt;/cite&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff2:</span> <span class="pl-c1">nil</span>,
+    },
+    {
+        <span class="pl-c1">node1:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;p class="footer"&gt;FOOTER&lt;/p&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">node2:</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;div class="footer"&gt;FOOTER&lt;/div&gt;<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff1:</span> <span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>,
+        <span class="pl-c1">diff2:</span> <span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>,
+    }
+]</pre></div>
+
+<p>The structure of each hash inside the array is:</p>
+
+<pre><code>node1: [Nokogiri::XML::Node] left node that contains the difference
+node2: [Nokogiri::XML::Node] right node that contains the difference
+diff1: [Nokogiri::XML::Node|String] left difference
+diff2: [Nokogiri::XML::Node|String] right difference
+</code></pre>
+</li>
+</ul>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+
+<h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>This gem was inspired by <a href="https://github.com/mbklein">Michael B. Klein</a>'s gem <a href="https://github.com/mbklein/equivalent-xml"><code>equivalent-xml</code></a> - another excellent tool for XML comparison.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>The gem is available as open source under the terms of the <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/vkononov/compare-xml">CompareXML</a> is maintained by <a href="https://github.com/vkononov">vkononov</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
