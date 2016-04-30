@@ -87,65 +87,102 @@ puts <span class="pl-c1">CompareXML</span>.equivalent?(doc1, doc2)</pre></div>
 
 <ul>
 <li>
-<p><code>collapse_whitespace: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#collapse_whitespace">⇨ show examples ⇦</a></p>
+<code>collapse_whitespace: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#collapse_whitespace">⇨ show examples ⇦</a>
 
 <ul>
 <li>when <code>true</code>, trims and collapses whitespace</li>
 </ul>
 </li>
+</ul>
+
+<p><br></p>
+
+<ul>
 <li>
-<p><code>ignore_attr_order: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_attr_order">⇨ show examples ⇦</a></p>
+<code>ignore_attr_order: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_attr_order">⇨ show examples ⇦</a>
 
 <ul>
 <li>when <code>true</code>, ignores attribute order within tags</li>
 </ul>
 </li>
+</ul>
+
+<p><br></p>
+
+<ul>
 <li>
-<p><code>ignore_attr_content: [string1, string2, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attr_content">⇨ show examples ⇦</a></p>
+<code>ignore_attr_content: [string1, string2, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attr_content">⇨ show examples ⇦</a>
 
 <ul>
 <li>when provided, ignores all attributes that contain substrings <code>string</code>, <code>string2</code>, etc.</li>
 </ul>
 </li>
+</ul>
+
+<p><br></p>
+
+<ul>
 <li>
-<p><code>ignore_attrs: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attrs">⇨ show examples ⇦</a></p>
+<code>ignore_attrs: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attrs">⇨ show examples ⇦</a>
 
 <ul>
 <li>when provided, ignores specific <em>attributes</em> using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>
 </li>
 </ul>
 </li>
+</ul>
+
+<p><br></p>
+
+<ul>
 <li>
-<p><code>ignore_comments: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_comments">⇨ show examples ⇦</a></p>
+<code>ignore_comments: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_comments">⇨ show examples ⇦</a>
 
 <ul>
 <li>when <code>true</code>, ignores comments, such as <code>&lt;!-- comment --&gt;</code>
 </li>
 </ul>
 </li>
+</ul>
+
+<p><br></p>
+
+<ul>
 <li>
-<p><code>ignore_nodes: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>      <a href="#ignore_nodes">⇨ show examples ⇦</a></p>
+<code>ignore_nodes: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>      <a href="#ignore_nodes">⇨ show examples ⇦</a>
 
 <ul>
 <li>when provided, ignores specific <em>nodes</em> using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>
 </li>
 </ul>
 </li>
+</ul>
+
+<p><br></p>
+
+<ul>
 <li>
-<p><code>ignore_text_nodes: {true|false}</code> default: <strong><code>false</code></strong>     <a href="#ignore_text_nodes">⇨ show examples ⇦</a></p>
+<code>ignore_text_nodes: {true|false}</code> default: <strong><code>false</code></strong>     <a href="#ignore_text_nodes">⇨ show examples ⇦</a>
 
 <ul>
 <li>when <code>true</code>, ignores all text content within a document</li>
 </ul>
 </li>
+</ul>
+
+<p><br></p>
+
+<ul>
 <li>
-<p><code>verbose: {true|false}</code> default: <strong><code>false</code></strong>          <a href="#verbose">⇨ show examples ⇦</a></p>
+<code>verbose: {true|false}</code> default: <strong><code>false</code></strong>          <a href="#verbose">⇨ show examples ⇦</a>
 
 <ul>
 <li>when <code>true</code>, instead of a boolean, <code>CompareXML.equivalent?</code> returns an array of discrepancies.</li>
 </ul>
 </li>
 </ul>
+
+<p><br></p>
 
 <h2>
 <a id="options-in-depth" class="anchor" href="#options-in-depth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Options in Depth</h2>
