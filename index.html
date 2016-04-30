@@ -84,98 +84,61 @@ puts <span class="pl-c1">CompareXML</span>.equivalent?(doc1, doc2)</pre></div>
 
 <div class="highlight highlight-source-ruby"><pre><span class="pl-c1">CompareXML</span>.equivalent?(doc1, doc2, {<span class="pl-c1">ignore_comments:</span> <span class="pl-c1">false</span>, <span class="pl-c1">verbose:</span> <span class="pl-c1">true</span>, ...})</pre></div>
 
-<p><br></p>
-
 <ul>
 <li>
-<code>collapse_whitespace: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#collapse_whitespace">read more...</a>
+<p><code>collapse_whitespace: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#collapse_whitespace">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when <code>true</code>, trims and collapses whitespace</li>
 </ul>
 </li>
-</ul>
-
-<p><br></p>
-
-<ul>
 <li>
-<code>ignore_attr_order: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_attr_order">read more...</a>
+<p><code>ignore_attr_order: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_attr_order">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when <code>true</code>, ignores attribute order within tags</li>
 </ul>
 </li>
-</ul>
-
-<p><br></p>
-
-<ul>
 <li>
-<code>ignore_attr_content: [string1, string2, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attr_content">read more...</a>
+<p><code>ignore_attr_content: [string1, string2, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attr_content">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when provided, ignores all attributes that contain substrings <code>string</code>, <code>string2</code>, etc.</li>
 </ul>
 </li>
-</ul>
-
-<p><br></p>
-
-<ul>
 <li>
-<code>ignore_attrs: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attrs">read more...</a>
+<p><code>ignore_attrs: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>     <a href="#ignore_attrs">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when provided, ignores specific <em>attributes</em> using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>
 </li>
 </ul>
 </li>
-</ul>
-
-<p><br></p>
-
-<ul>
 <li>
-<code>ignore_comments: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_comments">read more...</a>
+<p><code>ignore_comments: {true|false}</code> default: <strong><code>true</code></strong>     <a href="#ignore_comments">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when <code>true</code>, ignores comments, such as <code>&lt;!-- comment --&gt;</code>
 </li>
 </ul>
 </li>
-</ul>
-
-<p><br></p>
-
-<ul>
 <li>
-<code>ignore_nodes: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>      <a href="#ignore_nodes">read more...</a>
+<p><code>ignore_nodes: [css_selector1, css_selector1, ...]</code> default: <strong><code>[]</code></strong>      <a href="#ignore_nodes">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when provided, ignores specific <em>nodes</em> using <a href="http://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a>
 </li>
 </ul>
 </li>
-</ul>
-
-<p><br></p>
-
-<ul>
 <li>
-<code>ignore_text_nodes: {true|false}</code> default: <strong><code>false</code></strong>     <a href="#ignore_text_nodes">read more...</a>
+<p><code>ignore_text_nodes: {true|false}</code> default: <strong><code>false</code></strong>     <a href="#ignore_text_nodes">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when <code>true</code>, ignores all text content within a document</li>
 </ul>
 </li>
-</ul>
-
-<p><br></p>
-
-<ul>
 <li>
-<code>verbose: {true|false}</code> default: <strong><code>false</code></strong>          <a href="#verbose">read more...</a>
+<p><code>verbose: {true|false}</code> default: <strong><code>false</code></strong>          <a href="#verbose">&amp;Rarr; read more &amp;Larr;</a></p>
 
 <ul>
 <li>when <code>true</code>, instead of a boolean, <code>CompareXML.equivalent?</code> returns an array of discrepancies.</li>
